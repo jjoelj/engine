@@ -278,6 +278,13 @@ public class TextInputChannel {
         "TextInputClient.performAction", Arrays.asList(inputClientId, "TextInputAction.next"));
   }
 
+  /** Sends data to Flutter to handle image content inserted from the keyboard */
+  public void commitContent(int inputClientId, Map<String, Object> content) {
+    Log.v(TAG, "Sending 'commitContent' message.");
+    channel.invokeMethod(
+        "TextInputClient.performAction", Arrays.asList(inputClientId, "TextInputAction.commitContent", content));
+  }
+
   /** Instructs Flutter to execute a "previous" action. */
   public void previous(int inputClientId) {
     Log.v(TAG, "Sending 'previous' message.");
